@@ -1,26 +1,119 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg-primary: #0a0a0b;
+  --bg-secondary: #141416;
+  --bg-tertiary: #1c1c1f;
+  --bg-elevated: #232328;
+  --accent-primary: #6366f1;
+  --accent-primary-hover: #818cf8;
+  --accent-secondary: #10b981;
+  --accent-warning: #f59e0b;
+  --accent-danger: #ef4444;
+  --accent-info: #06b6d4;
+  --text-primary: #fafafa;
+  --text-secondary: #a1a1aa;
+  --text-muted: #71717a;
+  --border-default: #27272a;
+  --border-hover: #3f3f46;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
 }
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-hover);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.animate-slide-in {
+  animation: slideIn 0.3s ease-out;
+}
+
+.glass {
+  background: rgba(20, 20, 22, 0.8);
+  backdrop-filter: blur(12px);
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-primary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.card-hover {
+  transition: all 0.2s ease;
+}
+
+.card-hover:hover {
+  border-color: var(--border-hover);
+  transform: translateY(-2px);
+}
+
+.bg-bg-primary { background-color: var(--bg-primary); }
+.bg-bg-secondary { background-color: var(--bg-secondary); }
+.bg-bg-tertiary { background-color: var(--bg-tertiary); }
+.bg-bg-elevated { background-color: var(--bg-elevated); }
+
+.text-text-primary { color: var(--text-primary); }
+.text-text-secondary { color: var(--text-secondary); }
+.text-text-muted { color: var(--text-muted); }
+
+.border-border-default { border-color: var(--border-default); }
+.border-border-hover { border-color: var(--border-hover); }
+
+.hover\:bg-bg-tertiary:hover { background-color: var(--bg-tertiary); }
+.hover\:bg-bg-elevated:hover { background-color: var(--bg-elevated); }
+.hover\:text-text-primary:hover { color: var(--text-primary); }
+.hover\:text-accent-primary:hover { color: var(--accent-primary); }
+.hover\:border-border-hover:hover { border-color: var(--border-hover); }
+
+.focus\:border-accent-primary:focus { border-color: var(--accent-primary); }
+
+.placeholder\:text-text-muted::placeholder { color: var(--text-muted); }
+
+.bg-accent-primary\/15 { background-color: rgba(99, 102, 241, 0.15); }
+.bg-accent-secondary\/15 { background-color: rgba(16, 185, 129, 0.15); }
+.bg-accent-warning\/15 { background-color: rgba(245, 158, 11, 0.15); }
+.bg-accent-danger\/15 { background-color: rgba(239, 68, 68, 0.15); }
+.bg-accent-info\/15 { background-color: rgba(6, 182, 212, 0.15); }

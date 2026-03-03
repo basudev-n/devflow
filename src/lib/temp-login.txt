@@ -1,0 +1,18 @@
+  // Auth functions
+  const login = (email: string, password: string): boolean => {
+    // First check state, then localStorage
+    let user = users.find(u => u.email === email && u.password === password);
+
+    if (!user) {
+      // Check localStorage directly
+      const savedUsers = JSON.parse(localStorage.getItem("crm_users") || "[]");
+      user = savedUsers.find((u: User) => u.email === email && u.password === password);
+    }
+
+    if (user) {
+      setAuth({ user, isAuthenticated: true, isLoading: false });
+      localStorage.setItem("crm_current_user", JSON.stringify(user));
+      return true;
+    }
+    return false;
+  };
